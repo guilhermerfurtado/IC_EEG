@@ -9,7 +9,7 @@ import os
 
 f0= 60
 fs=512
-listanomes = ['Amanda', 'Braz', 'PedroF', 'PedroB']
+listanomes = ['Amanda', 'Braz', 'PedroB', 'PedroF']
 
 for nome in listanomes:
     for x in range(1,25):
