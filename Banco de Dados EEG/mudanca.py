@@ -50,9 +50,12 @@ for canal in channels:
 
     print(feat.shape)
 
-    nome_saida = f'./filtrados/{directory_name}/{nome}_features.csv'
 
 matriz_final = np.hstack(matriz_final)
 print(matriz_final.shape)
 # print(len(matriz_final))
-
+nome_saida = f'./filtrados/{directory_name}/features.csv'
+with open(nome_saida, mode='w', newline='') as arquivo_csv:
+    escritor = csv.writer(arquivo_csv)
+    escritor.writerows(zip(matriz_final))
+    
