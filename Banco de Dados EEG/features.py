@@ -15,6 +15,9 @@ rms = []  # root mean square
 # var = []  # variance
 # fmn = []  # frequency mean
 # fmd = []  # frequency median
+
+times = [8, 23, 39, 52]
+
 directory_name = 'features'
 lista_arquivos = [i for i in os.listdir('./filtrados') if i.find('.csv') != -1]
 
@@ -26,19 +29,19 @@ for nome_arquivo in lista_arquivos:
         
     channels = list(leitor_csv.head())[:-1]
     print(channels)
-
-    times = [8, 23, 39, 52]
-
     for canal in channels:
         for i in range(3): 
+            nome_saida = f'./{directory_name}/{nome_arquivo}_features{i}.csv'
             dados = leitor_csv[(leitor_csv['Tempo'] >= times[i]) & (leitor_csv['Tempo'] <= times[i+1])][canal]
             print(dados.shape)
-
             mav.append(np.mean(np.abs(dados)))
-            rms.append(np.sqrt(np.mean(dados ** 2)))
-            leitor_csv.to_csv(f'./{directory_name}/{nome_arquivo}_features.csv', index=False)
-
-            print(mav,i,canal)
+            rms.append(np.sqrt(np.mean(dados ** 2))) 
+            df2=pd.DataFrame({'mav': mav})
+            with open(nome_saida, mode='w', newline='') as arquivo_csv:
+                escritor = csv.writer(arquivo_csv)
+                escritor.writerow(["mav"])  # Cabeçalho
+                escritor.writerows(zip(mav, channels, times))
+                print(df2,i)
 
 
             # zcs.append(np.where(np.diff(np.sign(dados)))[0].shape[0])
