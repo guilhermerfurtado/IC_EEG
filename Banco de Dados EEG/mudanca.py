@@ -10,18 +10,18 @@ import os
 
 matriz_base = np.zeros((72, 46))
 times = [8, 23, 39, 52]
-pessoas = ['Amanda','Braz','PedroB','PedroF']
-# pessoas = ['Amanda']
+# pessoas = ['Amanda','Braz','PedroB','PedroF']
+pessoas = ['Amanda','Braz']
 directory_name = 'features'
 
 
-channels = ['E1','Pz','Fp1','T6','F7','O2','Fz','F8','A1','F3','C4','T5','P4','Fp2','Oz','O1','T3','A2','C3','Cz','F4','T4','P3'] 
-# channels = ['E1'] 
+# channels = ['E1','Pz','Fp1','T6','F7','O2','Fz','F8','A1','F3','C4','T5','P4','Fp2','Oz','O1','T3','A2','C3','Cz','F4','T4','P3'] 
+channels = ['E1', 'Pz'] 
 matriz_final = []
 for canal in channels:
+    mav = []  # mean absolute value
+    rms = []  # root mean square
     for nome in pessoas:
-        mav = []  # mean absolute value
-        rms = []  # root mean square
         lista_arquivos = [i for i in os.listdir('./filtrados') if i.find(f'{nome}') != -1]
         # print(len(lista_arquivos))
         for nome_arquivo in lista_arquivos:
@@ -52,6 +52,7 @@ for canal in channels:
 
     nome_saida = f'./filtrados/{directory_name}/{nome}_features.csv'
 
-# matriz_final = np.array(matriz_final)
-print(len(matriz_final))
+matriz_final = np.hstack(matriz_final)
+print(matriz_final.shape)
+# print(len(matriz_final))
 
