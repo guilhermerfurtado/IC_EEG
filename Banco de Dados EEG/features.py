@@ -37,11 +37,12 @@ for nome_arquivo in lista_arquivos:
             mav.append(np.mean(np.abs(dados)))
             rms.append(np.sqrt(np.mean(dados ** 2))) 
             df2=pd.DataFrame({'mav': mav})
-            with open(nome_saida, mode='w', newline='') as arquivo_csv:
-                escritor = csv.writer(arquivo_csv)
-                escritor.writerow(["mav"])  # Cabeçalho
-                escritor.writerows(zip(mav, channels, times))
-                print(df2,i)
+            print(mav)
+            # with open(nome_saida, mode='w', newline='') as arquivo_csv:
+            #     escritor = csv.writer(arquivo_csv)
+            #     escritor.writerow(["mav"])  # Cabeçalho
+            #     escritor.writerows(zip(mav))
+            
 
 
             # zcs.append(np.where(np.diff(np.sign(dados)))[0].shape[0])
