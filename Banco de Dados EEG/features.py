@@ -8,13 +8,12 @@ import os
 
 mav = []  # mean absolute value
 rms = []  # root mean square
-# zcs = []  # zero crossing
-# scc = []  # slope sign changes
-# wal = []  # waveform length
-
-# var = []  # variance
-# fmn = []  # frequency mean
-# fmd = []  # frequency median
+zcs = []  # zero crossing
+scc = []  # slope sign changes
+wal = []  # waveform length
+var = []  # variance
+fmn = []  # frequency mean
+fmd = []  # frequency median
 
 times = [8, 23, 39, 52]
 

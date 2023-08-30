@@ -8,19 +8,21 @@ import os
 
 
 
-matriz_base = np.zeros((72, 46))
+
 times = [8, 23, 39, 52]
-# pessoas = ['Amanda','Braz','PedroB','PedroF']
-pessoas = ['Amanda','Braz']
+pessoas = ['Amanda','Braz','PedroB','PedroF']
 directory_name = 'features'
 
 
-# channels = ['E1','Pz','Fp1','T6','F7','O2','Fz','F8','A1','F3','C4','T5','P4','Fp2','Oz','O1','T3','A2','C3','Cz','F4','T4','P3'] 
-channels = ['E1', 'Pz'] 
+channels = ['E1','Pz','Fp1','T6','F7','O2','Fz','F8','A1','F3','C4','T5','P4','Fp2','Oz','O1','T3','A2','C3','Cz','F4','T4','P3'] 
+
 matriz_final = []
 for canal in channels:
     mav = []  # mean absolute value
     rms = []  # root mean square
+    var = []  # variance
+    fmn = []  # frequency mean
+    fmd = []  # frequency median
     for nome in pessoas:
         lista_arquivos = [i for i in os.listdir('./filtrados') if i.find(f'{nome}') != -1]
         # print(len(lista_arquivos))
@@ -38,14 +40,23 @@ for canal in channels:
                 
                 mav.append(np.mean(np.abs(dados)))
                 rms.append(np.sqrt(np.mean(dados ** 2))) 
+                var.append(np.sum((dados-np.mean(dados))**2)/(dados.shape[0]-1))
+                fft_result = np.fft.fft(dados)
+                spectre = np.abs(fft_result)
+                positive_spectre = spectre[:len(spectre) // 2]
+                fmn.append(np.mean(positive_spectre))
+                fmd.append(np.median(positive_spectre))
                 df=pd.DataFrame({f'{canal} mav': mav})
                 df1=pd.DataFrame({f'{canal} rms': rms})
                 
 
     mav_array = np.array(mav)
     rms_array = np.array(rms)
+    var_array = np.array(var)
+    fmn_array = np.array(fmn)
+    fmd_array = np.array(fmd)
 
-    feat = np.vstack((mav_array, rms_array)).T
+    feat = np.vstack((mav_array, rms_array, var_array, fmn_array, fmd_array)).T
     matriz_final.append(feat)
 
     print(feat.shape)
