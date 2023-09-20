@@ -9,7 +9,7 @@ with open('./filtrados/features/rotulos.csv', 'r') as arquivo_csv:
 with open('./filtrados/features/features.csv', 'r') as arquivo1_csv:
     
     X = pd.read_csv(arquivo1_csv, decimal=',', sep=';')
-X_treino, X_teste, y_treino, y_teste = train_test_split(X, y, test_size=0.2, random_state=100)
+X_treino, X_teste, y_treino, y_teste = train_test_split(X, y, test_size=0.15, random_state=100)
 # Inicialize o modelo SVM com os parâmetros desejados
 svm_model = SVC(kernel='linear', C=1.0)  # Você pode ajustar o tipo de kernel e outros parâmetros
 
