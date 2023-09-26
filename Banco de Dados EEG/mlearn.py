@@ -2,14 +2,15 @@ from sklearn.svm import SVC
 from sklearn.metrics import accuracy_score
 import pandas as pd
 from sklearn.model_selection import train_test_split
-
-with open('./filtrados/features/rotulos.csv', 'r') as arquivo_csv:
+from numpy import ravel
+with open('./filtrados/features/rotulos_mov.csv', 'r') as arquivo_csv:
     y = pd.read_csv(arquivo_csv)
   
-with open('./filtrados/features/features.csv', 'r') as arquivo1_csv:
+with open('./filtrados/features/featuresimagina.csv', 'r') as arquivo1_csv:
     
     X = pd.read_csv(arquivo1_csv, decimal=',', sep=';')
-X_treino, X_teste, y_treino, y_teste = train_test_split(X, y, test_size=0.15, random_state=100)
+X_treino, X_teste, y_treino, y_teste = train_test_split(X, y, test_size=0.25, random_state=100)
+y_treino= ravel(y_treino)
 # Inicialize o modelo SVM com os parâmetros desejados
 svm_model = SVC(kernel='linear', C=1.0)  # Você pode ajustar o tipo de kernel e outros parâmetros
 
