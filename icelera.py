@@ -8,7 +8,9 @@ import struct
 import re
 import os
 import sys
-nome = 'PedroF24'
+nome = 'Guilherme'
+
+#Para executar o programa escreva na prompt python icelera.py client
 signals = {
     'start': bytearray([0x77, 0xEE, 0x55]),
     'memory_card': bytearray([0x77, 0xEE, 0x47, 0x37]),
@@ -29,7 +31,7 @@ class iblue(object):
 
     def __init__(self):
        # self.host = '172.31.1.201' #IP conectado na porta Ethernet
-       # self.host = '192.168.1.103' #IP do PC
+       # self.host = '192.168.1.103' #IP do P                                               C
         self.host = '192.168.5.10' #IP que veio no código
         self.port = 9000
         self.group = ['eeg']
