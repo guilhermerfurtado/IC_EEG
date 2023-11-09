@@ -8,7 +8,7 @@ import struct
 import re
 import os
 import sys
-nome = 'Guilherme'
+nome = 'T2_JosePedro16'
 
 #Para executar o programa escreva na prompt python icelera.py client
 signals = {
@@ -152,7 +152,7 @@ class iblue(object):
             
                     if (time.time() - inicio_execucao >= 42 and time.time() - inicio_execucao <= 43.5):
                         print("-----------SINAL-----------")
-                    if time.time() - inicio_execucao >= 53:
+                    if time.time() - inicio_execucao >= 57:
                         run = 0
         finally:
             print("Tempo de execução:", time.time() - inicio_execucao, "segundos")
