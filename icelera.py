@@ -8,7 +8,7 @@ import struct
 import re
 import os
 import sys
-nome = 'T2_JosePedro16'
+nome = 'T2_Franco16'
 
 #Para executar o programa escreva na prompt python icelera.py client
 signals = {
