@@ -1,19 +1,19 @@
-import streamlit as st
-import pandas as pd
-import numpy as np
-import matplotlib.pyplot as plt
+from flask import Flask
+import webbrowser
+import threading
 
-# Título da página
-st.title('Exemplo Streamlit: Gráfico Aleatório')
+app = Flask(__name__)
 
-# Geração de dados aleatórios
-data = pd.DataFrame(np.random.randn(100, 2), columns=['A', 'B'])
+# Conteúdo a ser exibido na página
+conteudo = "Olá, mundo!"
 
-# Checkbox para exibir ou não o dataframe
-if st.checkbox('Mostrar DataFrame'):
-    st.write(data)  # Mostra o dataframe
+@app.route('/')
+def index():
+    return f"<h1>Conteúdo:</h1><p>{conteudo}</p>"
 
-# Criando um gráfico de dispersão
-st.subheader('Gráfico de Dispersão')
-plt.scatter(data['A'], data['B'])
-st.pyplot()  # Mostra o gráfico no Streamlit
+def abrir_navegador():
+    webbrowser.open_new_tab('http://127.0.0.1:5000/')
+
+if __name__ == '__main__':
+    threading.Timer(1, abrir_navegador).start()
+    app.run(debug=True)
