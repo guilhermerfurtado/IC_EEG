@@ -1,17 +1,18 @@
+
 import matplotlib.pyplot as plt
 import csv
 import pandas as pd
 import numpy as np
 from scipy.signal import butter, iirnotch, filtfilt, sosfilt
-nome =  'T2_JosePedro13'
+nome =  'T2.1Isac12'
 with open(f'{nome}.csv', 'r') as arquivo_csv:
     leitor_csv = pd.read_csv(arquivo_csv)
 
 y = []
-j = "C3"
+j = "F3"
 f0= 60
 fs=512
-t = np.arange(0, 53, 53/len(leitor_csv))
+t = np.arange(0, 57, 57/len(leitor_csv))
 passo = np.arange(0, 53, 2)
 
 
